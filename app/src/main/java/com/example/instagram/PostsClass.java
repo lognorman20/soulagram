@@ -1,6 +1,7 @@
 package com.example.instagram;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.parse.ParseFile;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -35,6 +38,7 @@ class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Post post = posts.get(position);
+        holder.rootView.setTag(post);
         holder.bind(post);
     }
 
@@ -57,17 +61,30 @@ class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvUsername;
         private ImageView ivImage;
+        final View rootView;
         private TextView tvDescription;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvUsername = itemView.findViewById(R.id.tvUsername);
             ivImage = itemView.findViewById(R.id.ivImage);
-            tvDescription = itemView.findViewById(R.id.tvDescription);
+            tvDescription = itemView.findViewById(R.id.tvDetailedDescription);
+            rootView = itemView;
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final Post post = (Post)v.getTag();
+                    if (post != null) {
+                        Log.i("debugging", "spotemgotem");
+                        Intent intent = new Intent(context, PostDetailsActivity.class);
+                        intent.putExtra("post", Parcels.wrap(post));
+                        context.startActivity(intent);
+                    }
+                }
+            });
         }
 
         public void bind(Post post) {
             // Bind the post data to the view elements
-            Log.i("logdebug", "binding it rn");
             tvDescription.setText(post.getDescription());
             tvUsername.setText(post.getUser().getUsername());
             ParseFile image = post.getImage();
