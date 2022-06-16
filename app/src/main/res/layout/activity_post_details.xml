@@ -54,5 +54,4 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         tools:text="3h" />
 
-
 </RelativeLayout>
