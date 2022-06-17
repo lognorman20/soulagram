@@ -1,4 +1,4 @@
-package com.example.instagram;
+package com.example.instagram.activities;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.instagram.models.Post;
+import com.example.instagram.R;
 
 import org.parceler.Parcels;
 
@@ -20,6 +22,7 @@ public class PostDetailsActivity extends AppCompatActivity {
     private TextView tvDetailedUsername;
     private TextView tvCreatedAt;
 
+    // displays post details when a post is clicked on from a feed
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,7 @@ public class PostDetailsActivity extends AppCompatActivity {
                 .centerCrop().into(ivDetailedPostImage);
     }
 
+    // calculates the time since the post was created and translates to a nice format
     public static String calculateTimeAgo(Date createdAt) {
 
         int SECOND_MILLIS = 1000;
@@ -68,7 +72,6 @@ public class PostDetailsActivity extends AppCompatActivity {
                 return diff / DAY_MILLIS + " d";
             }
         } catch (Exception e) {
-            Log.i("Error:", "getRelativeTimeAgo failed", e);
             e.printStackTrace();
         }
 

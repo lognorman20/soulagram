@@ -1,4 +1,4 @@
-package com.example.instagram;
+package com.example.instagram.models;
 
 import com.parse.Parse;
 import com.parse.ParseClassName;
@@ -50,9 +50,7 @@ public class Post extends ParseObject {
     }
 
     public void setLikes() {
-        // get json array
         JSONArray array = new JSONArray();
-        // put that user into the likes array of the given post
         put(LIKES_KEY, array);
     }
 }
