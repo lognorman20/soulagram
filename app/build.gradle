@@ -43,9 +43,14 @@ dependencies {
     implementation 'org.parceler:parceler-api:1.1.12'
     annotationProcessor 'org.parceler:parceler:1.1.12'
 
+    // bottom navigation bar imports
+    implementation "androidx.appcompat:appcompat:${appCompatVersion}"
+    implementation "com.google.android.material:material:${designSupportVersion}"
+    implementation "androidx.recyclerview:recyclerview:${recyclerViewVersion}"
     // recycler view dependency
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation 'androidx.appcompat:appcompat:1.4.2'
+
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
