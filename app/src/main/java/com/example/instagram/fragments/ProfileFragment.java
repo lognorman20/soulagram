@@ -14,7 +14,7 @@ public class ProfileFragment extends PostsFragment {
     private static final String TAG = "ProfileFragment";
 
     @Override
-    protected void queryPosts() {
+    protected void queryPosts(int i) {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
         query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
