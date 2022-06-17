@@ -1,9 +1,14 @@
 package com.example.instagram;
 
+import com.parse.Parse;
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+
+import org.json.JSONArray;
+
+import java.util.List;
 
 @ParseClassName("Post")
 public class Post extends ParseObject {
@@ -11,6 +16,7 @@ public class Post extends ParseObject {
     public static final String KEY_DESCRIPTION = "description";
     public static final String KEY_IMAGE = "image";
     public static final String KEY_USER = "user";
+    private static final String LIKES_KEY = "likes";
 
     // getters/setters for each column
     public String getDescription() {
@@ -37,5 +43,16 @@ public class Post extends ParseObject {
 
     public void setUser(ParseUser user) {
         put(KEY_USER, user);
+    }
+
+    private List<ParseUser> getLikes() {
+        return getList(LIKES_KEY);
+    }
+
+    public void setLikes() {
+        // get json array
+        JSONArray array = new JSONArray();
+        // put that user into the likes array of the given post
+        put(LIKES_KEY, array);
     }
 }

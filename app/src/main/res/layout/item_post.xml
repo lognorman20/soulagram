@@ -21,10 +21,17 @@
         android:scaleType="centerCrop"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <ImageView
+        android:id="@+id/ivLikeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ufi_heart" />
+
     <TextView
         android:id="@+id/tvDetailedDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         tools:text="trying to look hipster" />
+
 </LinearLayout>
