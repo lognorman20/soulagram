@@ -51,24 +51,6 @@ public class FeedActivity extends AppCompatActivity {
         rvPosts.setLayoutManager(linearLayoutManager);
         rvPosts.addOnScrollListener(scrollListener);
 
-
-
-        // Configure the RecyclerView
-
-
-        // Retain an instance so that you can call `resetState()` for fresh searches
-
-
-        // Adds the scroll listener to RecyclerView
-
-
-        // initialize the array that will hold posts and create a PostsAdapter
-
-        // set the adapter on the recycler view
-
-        // set the layout manager on the recycler view
-       // rvPosts.setLayoutManager(new LinearLayoutManager(this));
-        // query posts from Parstagram
         queryPosts(0);
 
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);

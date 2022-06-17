@@ -19,7 +19,7 @@ import org.parceler.Parcels;
 
 import java.util.List;
 
-class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
+public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
     private Context context;
     private List<Post> posts;
 
