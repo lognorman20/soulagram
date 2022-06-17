@@ -8,13 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.instagram.fragments.PostsFragment;
+import com.example.instagram.activities.PostDetailsActivity;
+import com.example.instagram.models.Post;
 import com.parse.ParseFile;
 
 import org.parceler.Parcels;
@@ -78,9 +78,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             rootView = itemView;
             post = (Post) rootView.getTag();
 
-            if (post.)
-            // check if the user is in the array of people that have liked the post
-
+            // go to the details page of the post
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -94,19 +92,19 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 }
             });
 
+            // 1) change the image of the button
+            // 2) update in the database that the post is liked
+            // 3) update the boolean value of whether or not it is liked
             ivLikeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // change the image of the button
                     Glide.with(context).load(R.drawable.ufi_heart_active).into(ivLikeButton);
-                    // update in the database that the post is liked
-                    // update the boolean value of whether or not it is liked
                 }
             });
         }
 
+        // adds the given values to the adapter
         public void bind(Post post) {
-            // Bind the post data to the view elements
             tvDescription.setText(post.getDescription());
             tvUsername.setText(post.getUser().getUsername());
             ParseFile image = post.getImage();

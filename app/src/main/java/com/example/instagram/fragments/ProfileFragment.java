@@ -2,7 +2,7 @@ package com.example.instagram.fragments;
 
 import android.util.Log;
 
-import com.example.instagram.Post;
+import com.example.instagram.models.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -13,6 +13,7 @@ import java.util.List;
 public class ProfileFragment extends PostsFragment {
     private static final String TAG = "ProfileFragment";
 
+    // gets the next posts in the database
     @Override
     protected void queryPosts(int i) {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
@@ -24,11 +25,7 @@ public class ProfileFragment extends PostsFragment {
             @Override
             public void done(List<Post> posts, ParseException e) {
                 if (e != null) {
-                    Log.e(TAG, "Issue with getting posts", e);
                     return;
-                }
-                for (Post post : posts) {
-                    Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser());
                 }
                 allPosts.addAll(posts);
                 adapter.notifyDataSetChanged();

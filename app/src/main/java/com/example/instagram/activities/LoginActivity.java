@@ -1,4 +1,4 @@
-package com.example.instagram;
+package com.example.instagram.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.instagram.R;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -18,6 +19,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etUsername;
     private EditText etPassword;
     private Button btnLogin;
+
+    // initializes values and allows for the user to login to the database
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +37,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("THETAG", "onClick login button");
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 loginUser(username, password);
@@ -42,23 +44,22 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    // makes parse database call
     private void loginUser(String username, String password) {
-        Log.i("THETAG", "Attempting to login user " + username);
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
                 if (e != null) {
-                    Log.e("THETAG", "Issue with login", e);
                     Toast.makeText(LoginActivity.this, "Issue with login", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                // navigate to the main activity if the user has signed in properly
                 goMainActivity();
                 Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
+    // changes the activity to the main feed
     private void goMainActivity() {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
