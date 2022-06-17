@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.instagram.fragments.PostsFragment;
 import com.parse.ParseFile;
 
 import org.parceler.Parcels;
@@ -61,14 +63,24 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     class ViewHolder extends RecyclerView.ViewHolder {
         private TextView tvUsername;
         private ImageView ivImage;
-        final View rootView;
+        private ImageView ivLikeButton;
+        View rootView;
+        private Post post;
         private TextView tvDescription;
+        private boolean liked;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvUsername = itemView.findViewById(R.id.tvUsername);
             ivImage = itemView.findViewById(R.id.ivImage);
             tvDescription = itemView.findViewById(R.id.tvDetailedDescription);
+            ivLikeButton = itemView.findViewById(R.id.ivLikeButton);
             rootView = itemView;
+            post = (Post) rootView.getTag();
+
+            if (post.)
+            // check if the user is in the array of people that have liked the post
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -79,6 +91,16 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                         intent.putExtra("post", Parcels.wrap(post));
                         context.startActivity(intent);
                     }
+                }
+            });
+
+            ivLikeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // change the image of the button
+                    Glide.with(context).load(R.drawable.ufi_heart_active).into(ivLikeButton);
+                    // update in the database that the post is liked
+                    // update the boolean value of whether or not it is liked
                 }
             });
         }
