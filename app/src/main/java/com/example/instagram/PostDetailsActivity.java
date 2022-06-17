@@ -35,7 +35,8 @@ public class PostDetailsActivity extends AppCompatActivity {
         tvDetailedDescription.setText(post.getDescription());
         tvDetailedUsername.setText(post.getUsername());
         tvCreatedAt.setText(calculateTimeAgo(post.getCreatedAt()));
-        Glide.with(PostDetailsActivity.this).load(post.getImage().getUrl()).centerCrop().into(ivDetailedPostImage);
+        Glide.with(PostDetailsActivity.this).load(post.getImage().getUrl())
+                .centerCrop().into(ivDetailedPostImage);
     }
 
     public static String calculateTimeAgo(Date createdAt) {
